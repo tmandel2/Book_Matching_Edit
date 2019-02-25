@@ -31,12 +31,12 @@ class Login extends Component{
                 throw Error(loginResponse.statusText);
             }
             const parsed = await loginResponse.json();
-            console.log(parsed.info, ' parsed.info');
-            if(parsed.data === 'login successful'){
+            console.log(parsed, ' parsed.info');
+            if(parsed){
                 this.setState({
                     message: ''
                 })
-                this.props.getUserInfo(parsed.info);
+                this.props.getUserInfo(parsed);
                 this.props.history.push('/profile');
             }else{
                 this.setState({
@@ -49,7 +49,7 @@ class Login extends Component{
         }
     }
     render(){
-        console.log(this.state)
+        // console.log(this.state)
         return(
             <div>
                 <h3>Log in</h3>
