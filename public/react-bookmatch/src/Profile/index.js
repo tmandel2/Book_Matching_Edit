@@ -21,12 +21,15 @@ class Profile extends Component{
             credentials: 'include'
             })
             if(!foundUser.ok){
-                throw Error(foundUser.statusText);
+                // throw Error(foundUser.statusText);
             }
             const parsed = await foundUser.json();
             console.log(parsed);
             this.setState({
-                userData: parsed
+                userData: {
+                    user: parsed.user,
+                    likedBooks: parsed.books
+                }
             })
         }catch(err){
             console.log(err);
@@ -108,7 +111,7 @@ class Profile extends Component{
     }
     render(){
         console.log(this.state, '  state from profile');
-        const likedBooks = this.state.userData.length === 0 ? 'None' : this.state.userData.data.likedBooks.map((book)=>{
+        const likedBooks = this.state.userData.length === 0 ? 'None' : this.state.userData.likedBooks.map((book)=>{
             return(
                 <ul key={book.id} className="liked-books">
                     <li><img src={book.image} alt={book.image}/></li>

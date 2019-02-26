@@ -25,7 +25,7 @@ class Registration extends Component{
                 throw Error(response.statusText);
             }
             const parsed = await response.json();
-            if(parsed.data === 'registration successful'){
+            if(parsed){
                 this.setState({
                     message: ''
                 })

@@ -59,7 +59,7 @@ class Login extends Component{
                     <input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
                     <button type="submit">Submit</button>
                 </form>
-                <Registration />
+                <Registration history={this.props.history}/>
 
             </div>
         )
