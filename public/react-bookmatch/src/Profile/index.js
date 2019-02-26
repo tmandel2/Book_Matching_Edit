@@ -101,7 +101,7 @@ class Profile extends Component{
         this.setState({
             user: parsed.data
         })
-        this.getUser(this.state.user._id);
+        this.getUser(this.state.user.id);
     }
     componentDidMount(){
         this.getUser(this.state.user.id);
@@ -110,11 +110,11 @@ class Profile extends Component{
         console.log(this.state, '  state from profile');
         const likedBooks = this.state.userData.length === 0 ? 'None' : this.state.userData.data.likedBooks.map((book)=>{
             return(
-                <ul key={book._id} className="liked-books">
+                <ul key={book.id} className="liked-books">
                     <li><img src={book.image} alt={book.image}/></li>
                     <li>{book.title}</li>
                     <li>by: {book.author}</li>
-                    <li><button onClick={this.deleteBook.bind(null, book._id)}>Remove from Favorites</button></li>
+                    <li><button onClick={this.deleteBook.bind(null, book.id)}>Remove from Favorites</button></li>
                 </ul>
             )
         });
@@ -124,7 +124,7 @@ class Profile extends Component{
                 <button onClick={this.showModal} >Edit Profile</button> <br/>
                 {this.state.message} <br/>
                 {this.state.showModal ? <EditUser editUser={this.editUser} handleEditInput={this.handleEditInput} username={this.state.username} newUsername={this.state.newUsername}/> : null}
-                <button onClick={this.deleteUser.bind(null, this.state.user._id)} >Delete your Account</button>
+                <button onClick={this.deleteUser.bind(null, this.state.user.id)} >Delete your Account</button>
                 <h3>Your Favorite Books</h3>  <br/> 
                 {likedBooks}
                 

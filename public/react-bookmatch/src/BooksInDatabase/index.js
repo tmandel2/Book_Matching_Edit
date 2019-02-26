@@ -18,7 +18,7 @@ class BooksInDatabase extends Component{
             }
             const parsed = await response.json();
             this.setState({
-                bookList: parsed.data
+                bookList: parsed
             })
         }catch(err){
             console.log(err);
@@ -57,7 +57,7 @@ class BooksInDatabase extends Component{
             }
             await response.json();
             this.setState({
-                bookList: this.state.bookList.filter(book => book._id !== id)
+                bookList: this.state.bookList.filter(book => book.id !== id)
             })
 
         }catch(err){
@@ -71,13 +71,13 @@ class BooksInDatabase extends Component{
     render(){
         const books = this.state.bookList.map((book, i)=>{
             return(
-                <li key={book._id}>
+                <li key={book.id}>
                     <img src={book.image === undefined ? null : book.image} alt={book.image}/>
                      <br/>
                     {book.title} <br/>
                     by: {book.author} <br/>
                     <button onClick={this.addBook.bind(null, book)} >Add book to favorites</button><br/>
-                    <button onClick={this.deleteBook.bind(null, book._id)}>Delete book from database</button> 
+                    <button onClick={this.deleteBook.bind(null, book.id)}>Delete book from database</button> 
                     
                 </li>
             )
