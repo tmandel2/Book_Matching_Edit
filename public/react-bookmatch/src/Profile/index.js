@@ -61,7 +61,7 @@ class Profile extends Component{
     editUser = async (data, e)=>{
         e.preventDefault();
         try{
-            const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${this.state.user._id}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${this.state.user.id}`, {
                 method: 'PUT',
                 credentials: 'include',
                 body: JSON.stringify({"username":data}),
@@ -104,7 +104,7 @@ class Profile extends Component{
         this.getUser(this.state.user._id);
     }
     componentDidMount(){
-        this.getUser(this.state.user._id);
+        this.getUser(this.state.user.id);
     }
     render(){
         console.log(this.state, '  state from profile');
