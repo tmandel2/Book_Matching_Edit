@@ -51,7 +51,7 @@ class App extends Component{
       {JSON.stringify(this.state.user) === "{}" ?  <Login getUserInfo={this.getUserInfo}/>: 
       <Switch>
         <Route exact path="/" render={props => <Login getUserInfo={this.getUserInfo} history={this.props.history}/> } />
-        <Route exact path="/profile" render={props => <Profile user={this.state.user}/> } />
+        <Route exact path="/profile" render={props => <Profile user={this.state.user} getUserInfo={this.getUserInfo}/> } />
         <Route exact path="/books" render={props => <BookContainer user={this.state.user}/> } />
         <Route exact path="/booksindb" render={props => (<BooksInDatabase user={this.state.user}/>) } />
         <Route component={ My404 } />

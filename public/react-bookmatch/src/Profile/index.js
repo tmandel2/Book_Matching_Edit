@@ -83,6 +83,7 @@ class Profile extends Component{
                     message: 'This username is already taken! Try again.'
                 })
             }
+            this.props.getUserInfo(parsed);
             this.setState({
                 showModal: false,
                 username: parsed.username,
