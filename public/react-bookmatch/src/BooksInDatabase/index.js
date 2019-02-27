@@ -52,10 +52,10 @@ class BooksInDatabase extends Component{
                 method: 'DELETE',
                 credentials: 'include'
             });
-            if(!response.ok){
-                throw Error(response.statusText);
-            }
-            await response.json();
+            // if(!response.ok){
+            //     throw Error(response.statusText);
+            // }
+            await response;
             this.setState({
                 bookList: this.state.bookList.filter(book => book.id !== id)
             })

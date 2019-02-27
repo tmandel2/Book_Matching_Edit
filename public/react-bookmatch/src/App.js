@@ -34,6 +34,10 @@ class App extends Component{
         method: 'GET',
         credentials: 'include'
       })
+      console.log("THIS IS A THING");
+      this.setState({
+        user: {}
+      })
       this.props.history.push('/')
     }catch(err){
       console.log(err);
@@ -53,7 +57,7 @@ class App extends Component{
         <Route component={ My404 } />
       </Switch>
       }
-      <Footer />
+      <Footer logout={this.logout}/>
     </main>
     )
     

@@ -103,8 +103,9 @@ class Profile extends Component{
             throw Error(response.statusText);
         }
         const parsed = await response.json();
+        console.log(parsed, "THIS PARSED");
         this.setState({
-            user: parsed.data
+            user: parsed
         })
         this.getUser(this.state.user.id);
     }
@@ -113,7 +114,7 @@ class Profile extends Component{
     }
     render(){
         console.log(this.state, '  state from profile');
-        const likedBooks = this.state.userData.length === 0 ? 'None' : this.state.userData.likedBooks.map((book)=>{
+        const likedBooks = this.state.userData.likedBooks ? this.state.userData.likedBooks.map((book)=>{
             return(
                 <ul key={book.id} className="liked-books">
                     <li><img src={book.image} alt={book.image}/></li>
@@ -122,7 +123,7 @@ class Profile extends Component{
                     <li><button onClick={this.deleteBook.bind(null, book.id)}>Remove from Favorites</button></li>
                 </ul>
             )
-        });
+        }) : 'None';
         return(
             <div>
                 <h2>{this.state.username}'s Profile</h2>

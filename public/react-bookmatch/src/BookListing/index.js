@@ -6,7 +6,7 @@ class BookListing extends Component{
         super(props);
         this.state = {
             title: this.props.book.volumeInfo.title,
-            author: this.props.book.volumeInfo.authors.join(', '),
+            author: this.props.book.volumeInfo.authors ? this.props.book.volumeInfo.authors.join(', ') : '',
             image: this.props.book.volumeInfo.imageLinks === undefined ? null : this.props.book.volumeInfo.imageLinks.smallThumbnail
         }
     }
