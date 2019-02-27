@@ -32,11 +32,8 @@ class Registration extends Component{
                 this.setState({
                     message: ''
                 })
-                this.props.history.push('/books');
-            // }else{
-            //     this.setState({
-            //         message: 'This username is already taken!'
-            //     })
+                this.props.getUserInfo(parsed);
+                this.props.history.push('/profile');
             }
         }catch(err){
             console.log(err);

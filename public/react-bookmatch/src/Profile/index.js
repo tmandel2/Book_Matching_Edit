@@ -24,7 +24,6 @@ class Profile extends Component{
                 // throw Error(foundUser.statusText);
             }
             const parsed = await foundUser.json();
-            console.log(parsed);
             this.setState({
                 userData: {
                     user: parsed.user,
@@ -63,7 +62,6 @@ class Profile extends Component{
     }
     editUser = async (data, e)=>{
         e.preventDefault();
-        console.log(data, 'data');
         try{
             const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${this.state.user.id}`, {
                 method: 'PUT',
@@ -77,7 +75,6 @@ class Profile extends Component{
                 throw Error(response.statusText);
             }
             const parsed = await response.json();
-            console.log(parsed, "parsed");
             if(parsed.code && parsed.code === 11000){
                 this.setState({
                     message: 'This username is already taken! Try again.'
@@ -104,7 +101,6 @@ class Profile extends Component{
             throw Error(response.statusText);
         }
         const parsed = await response.json();
-        console.log(parsed, "THIS PARSED");
         this.setState({
             user: parsed
         })
@@ -114,7 +110,6 @@ class Profile extends Component{
         this.getUser(this.state.user.id);
     }
     render(){
-        console.log(this.state, '  state from profile');
         const likedBooks = this.state.userData.likedBooks ? this.state.userData.likedBooks.map((book)=>{
             return(
                 <ul key={book.id} className="liked-books">

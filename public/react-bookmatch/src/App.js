@@ -34,7 +34,6 @@ class App extends Component{
         method: 'GET',
         credentials: 'include'
       })
-      console.log("THIS IS A THING");
       this.setState({
         user: {}
       })
@@ -48,7 +47,7 @@ class App extends Component{
     return(
       <main className="App">
       <Header logout={this.logout}/>
-      {JSON.stringify(this.state.user) === "{}" ?  <Login getUserInfo={this.getUserInfo}/>: 
+      {JSON.stringify(this.state.user) === "{}" ?  <Login getUserInfo={this.getUserInfo} history={this.props.history}/>: 
       <Switch>
         <Route exact path="/" render={props => <Login getUserInfo={this.getUserInfo} history={this.props.history}/> } />
         <Route exact path="/profile" render={props => <Profile user={this.state.user} getUserInfo={this.getUserInfo}/> } />

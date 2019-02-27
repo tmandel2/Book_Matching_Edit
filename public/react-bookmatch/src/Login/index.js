@@ -34,7 +34,6 @@ class Login extends Component{
                 throw Error(loginResponse.statusText);
             }
             const parsed = await loginResponse.json();
-            console.log(parsed, ' parsed.info');
             if(parsed){
                 this.setState({
                     message: ''
@@ -42,18 +41,12 @@ class Login extends Component{
                 this.props.getUserInfo(parsed);
                 this.props.history.push('/profile');
             }
-            // }else{
-                // this.setState({
-                //     message: "Incorrect username or password"
-                // });
-            // }
         }catch(err){
             console.log(err);
             return(err);
         }
     }
     render(){
-        // console.log(this.state)
         return(
             <div>
                 <h3>Log in</h3>
@@ -63,7 +56,7 @@ class Login extends Component{
                     <input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
                     <button type="submit">Submit</button>
                 </form>
-                <Registration history={this.props.history}/>
+                <Registration history={this.props.history} getUserInfo={this.props.getUserInfo}/>
 
             </div>
         )

@@ -27,7 +27,6 @@ class BooksInDatabase extends Component{
     }
     addBook = async (data)=>{
         try{
-            console.log(data);
             const response = await fetch(`${process.env.REACT_APP_BACKEND}/books`, {
                 method: "POST",
                 credentials: 'include',
@@ -40,7 +39,6 @@ class BooksInDatabase extends Component{
                 throw Error(response.statusText);
             }
             const parsed = await response.json();
-            console.log('added ', parsed, ' to database');
         }catch(err){
             console.log(err);
             return err;
@@ -52,9 +50,6 @@ class BooksInDatabase extends Component{
                 method: 'DELETE',
                 credentials: 'include'
             });
-            // if(!response.ok){
-            //     throw Error(response.statusText);
-            // }
             await response;
             this.setState({
                 bookList: this.state.bookList.filter(book => book.id !== id)

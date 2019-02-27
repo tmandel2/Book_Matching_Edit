@@ -78,7 +78,6 @@ class BookContainer extends Component{
     }
     addBook = async (data)=>{
         try{
-            console.log(data);
             const response = await fetch(`${process.env.REACT_APP_BACKEND}/books`, {
                 method: "POST",
                 credentials: 'include',
@@ -91,7 +90,6 @@ class BookContainer extends Component{
                 throw Error(response.statusText);
             }
             const parsed = await response.json();
-            console.log('added ', parsed, ' to database');
         }catch(err){
             console.log(err);
             return err;
