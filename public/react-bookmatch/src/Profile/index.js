@@ -63,11 +63,12 @@ class Profile extends Component{
     }
     editUser = async (data, e)=>{
         e.preventDefault();
+        console.log(data, 'data');
         try{
             const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${this.state.user.id}`, {
                 method: 'PUT',
                 credentials: 'include',
-                body: JSON.stringify({"username":data}),
+                body: data,
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -76,6 +77,7 @@ class Profile extends Component{
                 throw Error(response.statusText);
             }
             const parsed = await response.json();
+            console.log(parsed, "parsed");
             if(parsed.code && parsed.code === 11000){
                 this.setState({
                     message: 'This username is already taken! Try again.'
@@ -83,7 +85,7 @@ class Profile extends Component{
             }
             this.setState({
                 showModal: false,
-                username: parsed.data.username,
+                username: parsed.username,
                 message: ''
             })
 
