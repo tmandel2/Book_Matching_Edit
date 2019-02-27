@@ -28,6 +28,9 @@ class Login extends Component{
                 }
             })
             if(!loginResponse.ok){
+                this.setState({
+                    message: "Incorrect username or password"
+                })
                 throw Error(loginResponse.statusText);
             }
             const parsed = await loginResponse.json();
@@ -38,11 +41,12 @@ class Login extends Component{
                 })
                 this.props.getUserInfo(parsed);
                 this.props.history.push('/profile');
-            }else{
-                this.setState({
-                    message: "Incorrect username or password"
-                });
             }
+            // }else{
+                // this.setState({
+                //     message: "Incorrect username or password"
+                // });
+            // }
         }catch(err){
             console.log(err);
             return(err);

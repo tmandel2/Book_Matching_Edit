@@ -22,6 +22,9 @@ class Registration extends Component{
                 }
             })
             if(!response.ok){
+               this.setState({
+                    message: 'This username is already taken!'
+                })                
                 throw Error(response.statusText);
             }
             const parsed = await response.json();
@@ -30,10 +33,10 @@ class Registration extends Component{
                     message: ''
                 })
                 this.props.history.push('/books');
-            }else{
-                this.setState({
-                    message: 'This username is already taken!'
-                })
+            // }else{
+            //     this.setState({
+            //         message: 'This username is already taken!'
+            //     })
             }
         }catch(err){
             console.log(err);
