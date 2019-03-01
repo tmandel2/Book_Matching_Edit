@@ -5,7 +5,7 @@ import BookListing from '../BookListing';
 // const https = require('https');
 
 
-const googleApiKey = 'AIzaSyD5zcjV-lFByHtpi7rTPMN-i-fQrlKtepw';
+const googleApiKey = `${process.env.REACT_APP_GOOGLEKEY}`;
 
 class BookContainer extends Component{
     constructor(){
@@ -13,48 +13,10 @@ class BookContainer extends Component{
         this.state = {
             searchTerm: '',
             searchGenre: '',
-            bookList: []
+            bookList: [],
+            titleOrAuthor: ''
         }
     }
-    // getBooks = async (title)=>{
-    //     https.get(`https://cors-anywhere.herokuapp.com/https://www.goodreads.com/search/index.xml?key=${API_KEY}&search[genre]=fiction&per_page=200`, (res) => {
-    //     const options = {
-    //         xml: {
-    //             normalizeWhitespace: true
-    //         }
-    //     }
-    //     let error;
-    //     if (res.statusCode !== 200) {
-    //         error = new Error('Request Failed.\n' +
-    //             `Status Code: ${res.statusCode}`);
-    //     }
-    //     if (error) {
-    //         console.log(error.message);
-    //         res.resume();
-    //         return;
-    //     }
-
-    //     res.setEncoding('utf8');
-    //     let rawData = '';
-    //     res.on('data', (chunk) => rawData += chunk);
-        
-    //     res.on('end', () => {
-    //         try {
-    //             const parsed = convert.xml2json(rawData, {compact: true, spaces: 4});
-    //             const reviews = JSON.parse(parsed).GoodreadsResponse.search.results.work;
-
-    //             this.setState({
-    //                 bookList: reviews
-    //             })
-    //         } catch (e) {
-    //             console.log(e.message);
-    //         }
-    //     });
-        
-    //     }).on('error', (e) => {
-    //         console.log(`Got error: ${e.message}`);
-    //     });
-    // }
     getGoogleBooks = async (state)=>{
         const genre = state.searchGenre.length > 0 ? `+subject:${state.searchGenre}` : '';
         const searchTerm = state.titleOrAuthor === 'title' ? state.searchTerm : `inauthor:${state.searchTerm}`;
@@ -68,9 +30,9 @@ class BookContainer extends Component{
             this.setState({
                 bookList: parsed.items,
                 searchTerm: searchTerm,
-                searchGenre: genre
+                searchGenre: genre,
+                titleOrAuthor: state.titleOrAuthor
             })
-
         }catch(err){
             console.log(err);
             return err;
@@ -123,8 +85,10 @@ class BookContainer extends Component{
         return(
             <div className="book-container">
                 <SearchBar getBooks={this.getGoogleBooks} />
-                {this.state.bookList.length > 0 ? <h1>Search Results for "{this.state.searchTerm}"</h1> : null}
-                {bookArray}
+                {this.state.bookList.length > 0 ? <h1>Search Results {this.state.titleOrAuthor}</h1> : null}
+                <ul>
+                    {bookArray}
+                </ul>
             </div>
         )
     }

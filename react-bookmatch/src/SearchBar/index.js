@@ -43,18 +43,27 @@ class SearchBar extends Component{
             )
         })
         return(
-            <div>
-                <h3>Search for a book</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="radio" name="titleOrAuthor" value="title" onChange={this.handleRadio}/> Title <br/>
-                    <input type="radio" name="titleOrAuthor" value="author" onChange={this.handleRadio}/> Author <br/>
-                    <input id="searchTerm" type="text" name="searchTerm" onChange={this.handleChange}/>
-                    <select name="searchGenre" onChange={this.handleGenre} >
+            <div className="searchbar">
+                <h2>Search for a book</h2>
+                <form className="searchbar-form" onSubmit={this.handleSubmit}>
+                    <div className="searchbar-radios">
+                        <div className="searchbar-title">
+                            <input type="radio" name="titleOrAuthor" value="title" onChange={this.handleRadio}/>
+                            Title
+                        </div>
+                        <div className="searchbar-author">
+                            <input type="radio" name="titleOrAuthor" value="author" onChange={this.handleRadio}/>
+                            Author
+                        </div>
+                    </div>
+                    <input id="searchTerm" type="text" name="searchTerm" onChange={this.handleChange} placeholder="Title or Author"/>
+                    <select className="search-select" name="searchGenre" onChange={this.handleGenre} >
                         <option disabled>----select a genre----</option>
                         <option value=''>all genres</option>
                         {genreOptions}
                     </select>
-                    <input type="submit"/>
+                    <br/>
+                    <button>Search</button>
                 </form>
             </div>
             

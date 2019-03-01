@@ -4,12 +4,10 @@ import { Link, withRouter } from 'react-router-dom';
 
 const Footer = (props)=>{
     return(
-        <div className="header">
+        <div className="header-footer">
             <ul>
-                <li>&copy; 2019 Jacob Mink</li>
-                <li><Link to="/profile">Contact</Link></li>
-                <li><Link to="/booksindb">About</Link></li>
-                <li><button onClick={props.logout}>Logout</button></li>
+                <li>&copy; 2019 Timothy Mandel and Jacob Mink</li>
+                {props.user.username ? <li><button onClick={props.logout}>Logout</button></li> : null}
             </ul>
             
         </div>

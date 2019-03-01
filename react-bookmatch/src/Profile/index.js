@@ -52,7 +52,8 @@ class Profile extends Component{
     }
     showModal = (e)=>{
         this.setState({
-            showModal: true
+            showModal: true,
+            newUsername: this.state.username
         })
     }
     handleEditInput = (e)=>{
@@ -112,23 +113,26 @@ class Profile extends Component{
     render(){
         const likedBooks = this.state.userData.likedBooks ? this.state.userData.likedBooks.map((book)=>{
             return(
-                <ul key={book.id} className="liked-books">
-                    <li><img src={book.image} alt={book.image}/></li>
-                    <li>{book.title}</li>
-                    <li>by: {book.author}</li>
-                    <li><button onClick={this.deleteBook.bind(null, book.id)}>Remove from Favorites</button></li>
-                </ul>
+                <li key={book.id} className="liked-books">
+                    <img className="book-image" src={book.image} alt={book.image}/>
+                    <div className="title-author">
+                        <div className="book-title">{book.title}</div>
+                        <small>by: {book.author}</small><br/>
+                    </div>
+                    <button onClick={this.deleteBook.bind(null, book.id)}>Remove from Favorites</button>
+                </li>
             )
         }) : 'None';
         return(
-            <div>
+            <div className="profile-page">
                 <h2>{this.state.username}'s Profile</h2>
-                <button onClick={this.showModal} >Edit Profile</button> <br/>
-                {this.state.message} <br/>
-                {this.state.showModal ? <EditUser editUser={this.editUser} handleEditInput={this.handleEditInput} username={this.state.username} newUsername={this.state.newUsername}/> : null}
+                {this.state.showModal ? <EditUser editUser={this.editUser} handleEditInput={this.handleEditInput} username={this.state.username} newUsername={this.state.newUsername}/> : <button onClick={this.showModal} >Edit Profile</button>}
                 <button onClick={this.deleteUser.bind(null, this.state.user.id)} >Delete your Account</button>
-                <h3>Your Favorite Books</h3>  <br/> 
-                {likedBooks}
+                {this.state.message}
+                <h3>Your Favorite Books</h3>
+                <ul>
+                    {likedBooks}
+                </ul>
                 
                 
 

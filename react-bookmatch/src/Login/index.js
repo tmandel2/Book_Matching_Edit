@@ -8,7 +8,8 @@ class Login extends Component{
         this.state = {
             username: '',
             password: '',
-            message: ''
+            message: '',
+            showRegistration: false
         }
     }
     handleChange = (e)=>{
@@ -46,18 +47,22 @@ class Login extends Component{
             return(err);
         }
     }
+    showRegistration = () => {
+        this.setState({
+            showRegistration: true
+        })
+    }
     render(){
         return(
-            <div>
-                <h3>Log in</h3>
+            <div className="searchbar">
+                <h2>Log in</h2>
                 {this.state.message}
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" name="username" placeholder="Username" onChange={this.handleChange}/>
-                    <input type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
-                    <button type="submit">Submit</button>
+                <form className="login-form" onSubmit={this.handleSubmit}>
+                    <input type="text" name="username" placeholder="Username" onChange={this.handleChange} className="login-input"/>
+                    <input type="password" name="password" placeholder="Password" onChange={this.handleChange} className="login-input"/>
+                    <button>Log In</button>
                 </form>
-                <Registration history={this.props.history} getUserInfo={this.props.getUserInfo}/>
-
+                {this.state.showRegistration ? <Registration history={this.props.history} getUserInfo={this.props.getUserInfo}/> : <button className="register-button" onClick={this.showRegistration}>Need to Register?</button>}
             </div>
         )
     }

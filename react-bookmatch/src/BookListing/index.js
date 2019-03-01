@@ -16,11 +16,11 @@ class BookListing extends Component{
     render(){
         return(
             <div>
-                {this.state.image === null ? null:<img src={this.state.image} alt={this.state.image}/>}
-                <p>
-                    {this.state.title} <br/>
+                {this.state.image === null ? null:<img src={this.state.image} alt={this.state.image} className="book-image"/>}
+                <div className="title-author">
+                    <div className="book-title">{this.state.title}</div>
                     <small>by {this.state.author}</small> 
-                </p>
+                </div>
                 <button onClick={this.handleClick}>Add book to favorites</button>
             </div>
         )

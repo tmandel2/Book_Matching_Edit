@@ -46,8 +46,8 @@ class App extends Component{
   render(){
     return(
       <main className="App">
-      <Header logout={this.logout}/>
-      {JSON.stringify(this.state.user) === "{}" ?  <Login getUserInfo={this.getUserInfo} history={this.props.history}/>: 
+      <Header user={this.state.user}/>
+      {!this.state.user.username ?  <Login getUserInfo={this.getUserInfo} history={this.props.history}/>: 
       <Switch>
         <Route exact path="/" render={props => <Login getUserInfo={this.getUserInfo} history={this.props.history}/> } />
         <Route exact path="/profile" render={props => <Profile user={this.state.user} getUserInfo={this.getUserInfo}/> } />
@@ -56,7 +56,7 @@ class App extends Component{
         <Route component={ My404 } />
       </Switch>
       }
-      <Footer logout={this.logout}/>
+      <Footer logout={this.logout} user={this.state.user}/>
     </main>
     )
     

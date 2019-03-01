@@ -47,12 +47,12 @@ class Registration extends Component{
     }
     render(){
         return(
-            <div>
-                <h3>Sign up</h3>
+            <div className="searchbar">
+                <h2>Register</h2>
                 {this.state.message}
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" name="username" onChange={this.handleChange} placeholder="Create a username"/>
-                    <input type="password" name="password" onChange={this.handleChange} placeholder="Create a password"/>
+                <form className="login-form" onSubmit={this.handleSubmit}>
+                    <input type="text" name="username" onChange={this.handleChange} placeholder="Create a username" className="login-input"/>
+                    <input type="password" name="password" onChange={this.handleChange} placeholder="Create a password" className="login-input"/>
                     <button type="submit">Register your account</button>
                 </form>
             </div>

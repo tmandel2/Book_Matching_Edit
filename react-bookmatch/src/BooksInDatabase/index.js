@@ -67,19 +67,20 @@ class BooksInDatabase extends Component{
         const books = this.state.bookList.map((book, i)=>{
             return(
                 <li key={book.id}>
-                    <img src={book.image === undefined ? null : book.image} alt={book.image}/>
-                     <br/>
-                    {book.title} <br/>
-                    by: {book.author} <br/>
-                    <button onClick={this.addBook.bind(null, book)} >Add book to favorites</button><br/>
-                    <button onClick={this.deleteBook.bind(null, book.id)}>Delete book from database</button> 
+                    <img className="book-image" src={book.image === undefined ? null : book.image} alt={book.image}/>
+                    <div className="title-author"> 
+                        <div className="book-title">{book.title}</div>
+                        <small>by: {book.author}</small><br/>
+                    </div>
+                    <button onClick={this.addBook.bind(null, book)} >Add to Favorites</button><br/>
+                    <button onClick={this.deleteBook.bind(null, book.id)}>Delete from Database</button> 
                     
                 </li>
             )
         })
         return(
             <div className="book-container">
-                <h1>Books our Users have Loved!</h1>
+                <h2>Books our Users have Loved!</h2>
                 <ul>
                     {books}
                 </ul>
